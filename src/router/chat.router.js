@@ -1,23 +1,19 @@
-const socketClient = io();
-const form = document.getElementById("chatForm");
-const inputMessage = document.getElementById("chatMessage");
-const h3Name = document.getElementById("email");
-const divChat = document.getElementById("chat");
+import { Router } from "express";
+import { messageManager } from "../dao/db/message";
+const router = Router();
 
+router.post("/", async (req, res) => {
+  const { user, message } = req.body;
+  if (!user || !message) {
+    return res.status(400).json({ message: "Some data is missing" });
+  }
+  try {
+    const messages = await messageManager.create(req.body);
 
-
-form.onsubmit = (e) => {
-  e.preventDefault();
-  const infoMessage = {
-    email: h3Name.value,
-    message: inputMessage.value,
-  };
-  socketClient.emit("message", infoMessage);
-};
-
-socketClient.on("chat", (messages) => {
-  const chat = messages
-    .map((objMessage) => `<p>${objMessage.email}: ${objMessage.message}</p>`)
-    .join(" ");
-  divChat.innerHTML = chat;
+    res.status(200).json({ message: "message created", chat: messages });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
+
+export default router;

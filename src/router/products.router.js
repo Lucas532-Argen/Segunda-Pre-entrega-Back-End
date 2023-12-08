@@ -1,17 +1,13 @@
 import { Router } from "express";
-import { productManager } from "../Dao/MongoDB/product.js";
+import { productManager } from "../dao/db/product.js";
 
 const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const product = await productManager.find(req.query);
-    if (!product.length) {
-      return res.status(200).json({ message: "No products" });
-    }
-    res.status(200).json({ message: "Products found", product });
-    req.product = product;
-    res.redirect(`/api/products/${product}`);
+    const product = await productManager.getAll(req.query);
+
+    res.json({ status: "success", payload: product });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

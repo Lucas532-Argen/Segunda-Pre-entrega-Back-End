@@ -32,7 +32,6 @@ class CartManager {
       }
       const newCart = { id, products };
       carts.push(newCart);
-      // carts.push({ id, ...products });
 
       await fs.promises.writeFile(this.path, JSON.stringify(carts));
       return newCart;

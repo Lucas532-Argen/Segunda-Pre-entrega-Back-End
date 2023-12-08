@@ -1,16 +1,16 @@
 const socketClient = io();
-const form = document.getElementById("chatForm");
-const inputMessage = document.getElementById("chatMessage");
-const h3Name = document.getElementById("email");
-const divChat = document.getElementById("chat");
+
+const formMsj = document.getElementById("msjForm");
+const formMail = document.getElementById("email");
+const formChat = document.getElementById("chat");
+const formText = document.getElementById("msj");
 
 
-
-form.onsubmit = (e) => {
+formMsj.onsubmit = (e) => {
   e.preventDefault();
   const infoMessage = {
-    email: h3Name.value,
-    message: inputMessage.value,
+    email: formMail.value,
+    message: formText.value,
   };
   socketClient.emit("message", infoMessage);
 };
@@ -19,5 +19,5 @@ socketClient.on("chat", (messages) => {
   const chat = messages
     .map((objMessage) => `<p>${objMessage.email}: ${objMessage.message}</p>`)
     .join(" ");
-  divChat.innerHTML = chat;
+  formChat.innerHTML = chat;
 });

@@ -19,20 +19,11 @@ socketClient.on("productCreated", (product) => {
   const row = `
     <tr>
     
-         
             <td>${product.title}</td>
             <td>${product.description}</td>
-            <td>${product.price}</td>
-           
+            <td>${product.price}</td>           
         </tr>`;
   table.innerHTML += row;
-});
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-button")) {
-    e.preventDefault();
-    const productId = e.target.getAttribute("data-product-id");
-    socketClient.emit("deleteProduct", productId);
-  }
 });
 
 socketClient.on("updateProducts", (product) => {
@@ -45,7 +36,6 @@ socketClient.on("updateProducts", (product) => {
         <td>${product.title}</td>
         <td>${product.description}</td>
         <td>${product.price}</td>
-
       </tr>`;
     table.innerHTML += row;
   });

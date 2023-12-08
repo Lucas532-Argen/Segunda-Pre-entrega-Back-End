@@ -6,8 +6,8 @@ import { Server } from "socket.io";
 import "./db/config.js";
 import productsRouter from "./router/products.router.js";
 import cartRouter from "./router/carts.router.js";
-import { productManager } from "./Dao/MongoDB/product.js";
-import { messageManager } from "./Dao/MongoDB/message.js";
+import { productManager } from "./dao/db/product.js";
+import { messageManager } from "./dao/db/message.js";
 const app = express();
 
 app.use(express.json());

@@ -28,19 +28,12 @@ class ProductManager {
       if (
         !product.title ||
         !product.description ||
-        //  !product.category ||
         !product.price
-        //  !product.thumbnail ||
-        //  !product.code ||
-        //   !product.stock
+
       ) {
         console.log("Faltan campos");
         return;
       }
-      //if (codeRepeat) {
-      //   console.log("El código ya existe");
-      //   return;
-      //    }
       let id;
 
       if (!products.length) {
@@ -101,64 +94,5 @@ class ProductManager {
   }
 }
 
-const product1 = {
-  title: "Titanic",
-  description: "null",
-  price: 1000,
-  thumbnail: "https://titanic",
-  code: "1997",
-  stock: "10",
-};
-const product2 = {
-  title: "Terminator 2",
-  description: "null",
-  price: 1000,
-  thumbnail: "https://terminator2",
-  code: "1991",
-  stock: "5",
-};
-const product3 = {
-  title: "Rocky",
-  description: "null",
-  price: 1000,
-  thumbnail: "https://rocky",
-  code: "1978",
-  stock: "10",
-};
-const product4 = {
-  title: "Batman",
-  description: "",
-  price: 2000,
-  thumbnail: "https://batman",
-  code: "1992",
-  stock: "15",
-};
-
-const product5 = {
-  title: "Volver al futuro",
-  description: "null",
-  price: 2000,
-  thumbnail: "https://backtothefuture",
-  code: "1988",
-  stock: "15",
-};
-/*
-async function test() {
-  const manager = new ProductManager("products.json");
-
-//  await manager.addProduct(product1);
-
- // await manager.addProduct(product2);
- // await manager.addProduct(product3);
-  // await manager.addProduct(product4);
-  // await manager.addProduct(product5);
-  //  const getid = await manager.getProductById(3);
-  // console.log(getid);
-    const prods = await manager.getProducts();
-    console.log(prods);
-}
-test();*/
 
 export default new ProductManager("products.json");
-
-//export const ProductsManager = new ProductManager("products.json");
